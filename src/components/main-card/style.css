@@ -1,0 +1,17 @@
+.main-card {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    width: 230px;
+    height: 200px;
+    border-radius: 5px;
+    margin-right: var(--offset-lg);
+}
+
+.main-card-title {
+    color: black;
+    font-size: 20px;
+    margin-bottom: var(--offset-sm);
+}

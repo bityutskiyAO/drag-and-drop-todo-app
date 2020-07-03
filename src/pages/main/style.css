@@ -1,0 +1,28 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: var(--offset-lg);
+}
+
+.main-info {
+    margin-bottom: var(--offset-lg);
+    font-size: 30px;
+    text-align: left;
+    align-self: flex-start;
+    color: black;
+}
+
+.main-cards {
+    display: flex;
+    align-items: flex-end;
+}
+
+#modal-root {
+    position: relative;
+    z-index: 1000 ;
+    background-color: rgba(102, 102, 102, .8);
+}

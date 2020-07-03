@@ -1,0 +1,7 @@
+.todo-background-container {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    margin-right: var(--offset-sm);
+    cursor: pointer;
+}
