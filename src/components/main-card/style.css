@@ -12,6 +12,16 @@
 
 .main-card-title {
     color: black;
+    outline: none;
     font-size: 20px;
     margin-bottom: var(--offset-sm);
 }
+
+.delete-board-btn {
+    position: absolute;
+    top: 6px;
+    right: 32px;
+    color: black;
+    transition: all 0.2s;
+}
+

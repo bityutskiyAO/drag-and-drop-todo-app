@@ -50,6 +50,7 @@
     min-width: 200px;
     border: none;
     outline: none;
+    opacity: 0.8;
     padding: var(--offset-sm);
     height: 38px;
     margin-right: var(--offset-md);

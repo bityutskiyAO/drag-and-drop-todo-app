@@ -1,0 +1,35 @@
+.edit-list-container {
+    display: flex;
+    border-radius: 5px;
+    flex-direction: column;
+}
+
+.edit-list-input {
+    margin-bottom: var(--offset-sm);
+    border: none;
+    background-color: #EBECEF;
+    border-radius: 5px;
+    margin-left: 28px;
+    margin-right: var(--offset-md);
+    padding: var(--offset-sm);
+    width: calc(100% - 44px);
+    height: 78px;
+    resize: none;
+}
+
+.edit-list-add-btn {
+    margin-right: var(--offset-md);
+    margin-left: 28px;
+    background-color: #EBECEF;
+}
+
+.edit-list-close {
+    font-size: 20px;
+    opacity: 0.8;
+    color: #666;
+    transition: all 0.2s;
+}
+.edit-list-close:hover {
+    cursor: pointer;
+    opacity: 1;
+}

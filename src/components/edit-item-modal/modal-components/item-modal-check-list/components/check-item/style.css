@@ -1,0 +1,21 @@
+
+.default-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    justify-content: flex-start;
+    border-radius: 5px;
+    padding: var(--offset-sm);
+    margin-bottom: var(--offset-sm);
+}
+
+.done-checkbox {
+    border-radius: 5px;
+    padding: var(--offset-sm);
+    background-color: #7bc86c;
+    opacity: 0.3;
+}
+
+#check-box {
+    margin-right: 13px;
+}

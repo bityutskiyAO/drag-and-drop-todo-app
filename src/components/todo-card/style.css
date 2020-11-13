@@ -32,40 +32,6 @@
     cursor: pointer;
 }
 
-.edit-todo-container {
-    display: flex;
-    background-color: white;
-    border: 1px solid #666;
-    border-radius: 5px;
-    flex-direction: column;
-}
-
-.edit-todo-input {
-    height: 38px;
-    padding: var(--offset-sm);
-    margin-bottom: var(--offset-sm);
-}
-
-.edit-todo-add-btn {
-    margin-right: var(--offset-md);
-}
-
-.edit-todo-add-btn:hover {
-    margin-right: var(--offset-md);
-}
-
-.edit-todo-close {
-    font-size: 22px;
-    opacity: 0.8;
-    color: #666;
-    transition: all 0.2s;
-}
-.edit-todo-close:hover {
-    cursor: pointer;
-    opacity: 1;
-}
-
-
 .done-todo-container {
     padding: var(--offset-sm);
     border-radius: 5px;

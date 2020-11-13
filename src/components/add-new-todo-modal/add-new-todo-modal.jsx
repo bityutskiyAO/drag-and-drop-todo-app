@@ -50,7 +50,7 @@ const stubBackground = [
 
 
 export const NewTodoModal = (props) => {
-    const { setShowModal } = props
+    const { setShowModal, setMainCard } = props
 
     const [planTitle, setPlanTitle] = useState('')
     const [backgroundStyle, setBackgroundStyle] = useState({ theme: '', value: '' })
@@ -74,6 +74,10 @@ export const NewTodoModal = (props) => {
         const { theme, value } = obj
         setBackgroundStyle(obj)
         setBackgroundToElement('modal-container', theme, value)
+    }
+
+    const handleAddBtnOnClick = () => {
+        setMainCard({ id: planTitle, backgroundStyle })
     }
 
     return (
@@ -101,7 +105,7 @@ export const NewTodoModal = (props) => {
                     </div>
                 </div>
                 <Link to={ `/todo/${planTitle}?backStyle=${backgroundStyle.theme}&backValue=${backgroundStyle.value}` } className='todo-modal-add-btn'>
-                    <Button variant="primary"> Создать новый план </Button>{' '}
+                    <Button variant="primary" onClick={ handleAddBtnOnClick }> Создать новый план </Button>{' '}
                 </Link>
             </div>
         </div>

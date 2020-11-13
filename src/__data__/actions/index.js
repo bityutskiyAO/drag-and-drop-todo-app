@@ -1,9 +1,11 @@
 import { setTodoCard, sortCards } from './todo-cards'
-import { setTodoCardItem, sortTodoCardItems } from './todo-cards-items'
+import { setTodoCardItem } from './todo-cards-items'
+import { setMainCard, deleteMainCard } from './todo-main'
 
 export {
     setTodoCard,
     sortCards,
     setTodoCardItem,
-    sortTodoCardItems
+    setMainCard,
+    deleteMainCard
 }

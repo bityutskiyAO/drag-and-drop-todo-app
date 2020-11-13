@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './style.css'
 import { AddTodo } from './add-todo'
-import { EditTodo } from './edit-todo'
+import {EditTodo} from "./edit-todo";
 
 export const ToDoCard = (props) => {
 

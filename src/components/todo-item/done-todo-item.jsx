@@ -39,17 +39,16 @@ export const DoneTodoItem = (props) => {
             }
         },
     })
+    const handleItemOnClick = () => {
+
+    }
 
     const opacity = isDragging ? 0 : 1
 
-
-    console.log(`opacity ${id}`, opacity)
-    console.log(`isDragging ${id}`, isDragging)
     return (
        <div style={ { position: 'relative' } } ref={ (node) => drop(node) } >
-            <div id={ `done-todo-item-${id}` } className='done-todo-item' style={ { opacity } } ref={ drag }>
+            <div id={ `done-todo-item-${id}` } className='done-todo-item' style={ { opacity } } ref={ drag }  onClick={ handleItemOnClick }>
                 <span>{title}</span>
-                <EditOutlined />
             </div>
        {isOver &&
            <div className='done-todo-placeholder' style={ { height: getCardHeight(`done-todo-item-${id}`).height, width: getCardHeight(`done-todo-item-${id}`).width } }>

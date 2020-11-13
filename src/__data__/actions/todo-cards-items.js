@@ -1,20 +1,12 @@
-import { TODO_CARD_ITEM_ADD, TODO_CARD_ITEM_SORT } from '../action-type'
+import { TODO_CARD_ITEM_ADD } from '../action-type'
 
-export const setTodoCardItem = (items, id) => {
+export const setTodoCardItem = (items, id, boardId) => {
     return {
         type: TODO_CARD_ITEM_ADD,
         payload: {
+            boardId,
             items,
             id
-        }
-    }
-}
-
-export const sortTodoCardItems = (items) => {
-    return {
-        type: TODO_CARD_ITEM_SORT,
-        payload: {
-            items
         }
     }
 }

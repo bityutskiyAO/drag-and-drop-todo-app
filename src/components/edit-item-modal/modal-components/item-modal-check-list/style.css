@@ -1,0 +1,15 @@
+
+.modal-check-list-container {
+    margin-top: var(--offset-md);
+    width: 100%;
+}
+
+.modal-check-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-check-list-title {
+    display: flex;
+}

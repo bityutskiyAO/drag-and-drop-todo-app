@@ -1,0 +1,17 @@
+
+.edit-item-data-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 180px;
+    height: 35px;
+    padding: 5px 5px 5px 10px;
+    background-color: #EBECEF;
+    border-radius: 5px;
+    margin-bottom: var(--offset-sm);
+    cursor: pointer;
+}
+
+.edit-item-data-title {
+    margin-left: var(--offset-sm);
+}

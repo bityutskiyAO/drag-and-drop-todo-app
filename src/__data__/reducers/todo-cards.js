@@ -1,73 +1,81 @@
-import { TODO_CARD_ADD, TODO_CARD_ITEM_ADD, TODO_CARD_ITEM_SORT, TODO_CARD_SORT } from '../action-type'
+import { TODO_CARD_ADD, TODO_CARD_ITEM_ADD, TODO_CARD_SORT } from '../action-type'
 
 const initialState = {
-    cards: [],
-    cardItems: []
+    allData: []
 }
-/*
-*   cardItems: [
-*       {
-*           id: 1,
-*              items: [
-*                   ....
-*               ]
-*       },
-*       {
-*           id: 2,
-*              items: [
-*                   ....
-*               ]
-*       }
-* ]
-*
-*
-*
-*
-*
-* */
+
 export const todoCards = (state = initialState, action) => {
     switch (action.type) {
         case TODO_CARD_ADD: {
+            const { allData } = state
+            const currentCards = allData.find((data) => data.boardId === action.payload.id)
+
+            if (currentCards) {
+                const currentIndex = allData.indexOf(currentCards)
+                allData[currentIndex].cards.push({
+                    id:  allData[currentIndex].cards.length,
+                    ...action.payload.cardData
+                })
+            } else {
+                const newData = {
+                    boardId: action.payload.id,
+                    cards: [
+                        {
+                            id: 0,
+                            ...action.payload.cardData
+                        }
+                    ],
+                    cardItems: []
+                }
+
+                allData.push(newData)
+            }
+
             return {
                 ...state,
-                cards: [
-                    ...state.cards,
-                    {
-                        id: state.cards.length,
-                        ...action.payload
-                    }
+                allData: [
+                    ...allData
                 ]
             }
         }
         case TODO_CARD_SORT: {
+            const { allData } = state
+
+            const currentCards = allData.find((data) => data.boardId === action.payload.id)
+            const currentIndex = allData.indexOf(currentCards)
+            allData[currentIndex].cards.splice(0, allData[currentIndex].cards.length, ...action.payload.cards)
+
             return {
                 ...state,
-                cards: [
-                    ...action.payload.cards
+                allData: [
+                    ...allData
                 ]
             }
         }
         case TODO_CARD_ITEM_ADD: {
-            const { id, items } = action.payload
+            const { id, items, boardId } = action.payload
+            const { allData } = state
 
-            console.log('REDUC', items)
+            const currentData = allData.find((data) => data.boardId === boardId)
+            console.log('currentData', currentData)
 
-            const { cardItems } = state
-            let editItem = cardItems.find(item => item.id === id)
-            if (editItem) {
-                const itemIndex = cardItems.indexOf(editItem)
-                cardItems[itemIndex].items.splice(0, cardItems[itemIndex].items.length, ...items)
-            } else {
-                editItem = {
-                    id,
-                    items
+            const currentIndex = allData.indexOf(currentData)
+            const { cardItems } = currentData
+                let editItem = cardItems.find(item => item.id === id)
+                if (editItem) {
+                    const itemIndex = cardItems.indexOf(editItem)
+                    allData[currentIndex].cardItems[itemIndex].items.splice(0, cardItems[itemIndex].items.length, ...items)
+                } else {
+                    editItem = {
+                        id,
+                        items
+                    }
+                    allData[currentIndex].cardItems.push(editItem)
                 }
-                cardItems.push(editItem)
-            }
             return {
                 ...state,
-                cardItems: [
-                    ...cardItems
+                allData: [
+                    ...allData
                 ]
             }
         }

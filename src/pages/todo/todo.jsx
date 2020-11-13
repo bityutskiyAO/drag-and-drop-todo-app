@@ -12,10 +12,13 @@ import  DoneTodo from '../../components/todo-card/done-todo'
 import './style.css'
 import { parsQueryString, setBackgroundToElement } from '../../utils'
 import { dropItemsTypes } from '../../constants'
+import { EditItemModal } from '../../components/edit-item-modal/edit-item-modal'
 
 export const ToDo = (props) => {
     const { todoCards, setTodoCard, sortTodoCard } = props
-    const { params: { id } } = props.match
+    const { params: { id : boardId } } = props.match
+
+    const currentTodoCards = todoCards(boardId)
 
     const [, drop] = useDrop({
         accept: dropItemsTypes.CARD
@@ -26,20 +29,19 @@ export const ToDo = (props) => {
     const moveCard = (id, atIndex) => {
         const { card, index } = findCard(id)
         sortTodoCard(
-            update(todoCards, {
+            update(currentTodoCards, {
                 $splice: [
                     [index, 1],
                     [atIndex, 0, card]
                 ]
-            })
-        )
+            }), boardId)
     }
 
     const findCard = (id) => {
-        const card = todoCards.find((card) => card.id === id)
+        const card = currentTodoCards.find((card) => card.id === id)
         return {
             card,
-            index: todoCards.indexOf(card)
+            index: currentTodoCards.indexOf(card)
         }
     }
 
@@ -48,16 +50,14 @@ export const ToDo = (props) => {
     }, [])
 
     const setNewCardsData = (title) => {
-        setTodoCard({ title: title })
+        setTodoCard({ title: title }, boardId)
     }
-
-    console.log('todoCards', todoCards)
 
     return (
         <div className='todo-container' id='todo-container'>
-            <ToDoHeader title={ id }  />
+            <ToDoHeader title={ boardId }  />
             <div className='todo-body' ref={ drop }>
-                {todoCards && todoCards.map((card) => {
+                {currentTodoCards && currentTodoCards.map((card) => {
                     return (
                         <DoneTodo
                             key={ card.title }
@@ -65,6 +65,7 @@ export const ToDo = (props) => {
                             cardTitle={ card.title }
                             moveCard={ moveCard }
                             findCard={ findCard }
+                            boardId={ boardId }
                         />
                     )
                 })}
@@ -75,7 +76,7 @@ export const ToDo = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-    todoCards: selectors.getTodoCards(state)
+    todoCards: (urlIdParam) => selectors.getTodoCards(state, urlIdParam)
 })
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({

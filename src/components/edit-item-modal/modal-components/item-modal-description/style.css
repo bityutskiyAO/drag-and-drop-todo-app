@@ -1,0 +1,27 @@
+
+.modal-description-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.modal-description-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: var(--offset-sm);
+}
+
+.modal-description-textarea {
+    box-sizing: border-box;
+    border: none;
+    background-color: #EBECEF;
+    border-radius: 5px;
+    margin-left: 28px;
+    margin-right: var(--offset-md);
+    padding: var(--offset-sm);
+    width: calc(100% - 44px);
+    height: 78px;
+    resize: none;
+}

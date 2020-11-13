@@ -14,8 +14,8 @@ import './style.css'
 import { getCardHeight } from '../../utils'
 
 export const DoneTodo = (props) => {
-    const { cardTitle, id, cardItems, setTodoCardItems, moveCard, findCard } = props
-    const currentCardItems = _.find(cardItems, (card) => card.id === id)?.items || []
+    const { cardTitle, id, cardItems, setTodoCardItems, moveCard, findCard, boardId } = props
+    const currentCardItems = _.find(cardItems(boardId), (card) => card.id === id)?.items || []
 
     const moveItem = (itemId, atIndex) => {
         const { item, index } = findItem(itemId)
@@ -24,7 +24,7 @@ export const DoneTodo = (props) => {
                 [index, 1],
                 [atIndex, 0, item]
             ]
-        }), id)
+        }), id, boardId)
     }
 
     const findItem = (itemId) => {
@@ -42,7 +42,7 @@ export const DoneTodo = (props) => {
                 id: currentCardItems.length ? currentCardItems.length : 0,
                 ...itemData
             }
-        ], id)
+        ], id, boardId)
     }
 
     const originalIndex = findCard(id).index
@@ -79,8 +79,7 @@ export const DoneTodo = (props) => {
 
 
     const opacity = isDragging ? 0 : 1
-    console.log(`opacity ${id}`, opacity)
-    console.log(`isDragging ${id}`, isDragging)
+
     return (
         <div style={ { position: 'relative' } } ref={ (node) => drop(node) }>
             <div id={ `done-todo-card-${id}` } className='todo-card done-todo-container' style={ { opacity } } ref={ drag }>
@@ -112,12 +111,11 @@ export const DoneTodo = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-    cardItems: selectors.getTodoCardItems(state)
+    cardItems: (id) => selectors.getTodoCardItems(state, id)
 })
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    setTodoCardItems: actions.setTodoCardItem,
-    sortCardItems: actions.sortTodoCardItems
+    setTodoCardItems: actions.setTodoCardItem
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(DoneTodo)
